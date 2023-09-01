@@ -1,0 +1,76 @@
+{% extends 'gallery/base.html' %}
+
+{% block heading %}
+    <title>Gallery</title>
+    <style>
+        body {
+            width: 100%;
+            display: flex;
+            flex-decoration: column;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            position: relative;
+            top: 98%;
+            left: 20%;
+        }
+
+        .title {
+            position: relative;
+            top: 98%;
+            left: 20%;
+        }
+
+        .date {
+            position: relative;
+            top: 94%;
+            left: 20%;
+        }
+
+        .post_img {
+            display: flex;
+            flex-wrap: wrap;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .karobka {
+            flex-wrap: wrap;
+            display: flex;
+
+        }
+
+        .inside {
+            width: 33%;
+        }
+    </style>
+{% endblock heading %}
+
+
+{% block content %}
+<div>
+    <h1>Gallery</h1>
+    {% csrf_token %}
+    <div class="karobka">
+    {% for i in images %}
+        <div class="inside">
+            <h3>{{ i.author }}</h3>
+            <p class="title">{{ i.title }}</p>
+            <p class="date">{{ i.date }}</p>
+            <img class="post_img" src="{{ i.img.url }}">
+        </div>
+    {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}
